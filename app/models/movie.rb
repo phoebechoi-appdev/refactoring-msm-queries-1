@@ -12,5 +12,23 @@
 #  updated_at  :datetime         not null
 #  director_id :integer
 #
-class Movie < ApplicationRecord
+class Movie < ApplicationRecord 
+  def director
+    my_director_id = self.director_id
+
+    matching_directors = Director.where({ :id => my_director_id})
+
+    the_director = matching_directors.at(0)
+
+    return the_director 
+
+  end
+
+def characters
+  my_id = self.id
+  the_characters = Character.where({ :movie_id => my_id})
+
+  return the_characters
+end
+
 end
